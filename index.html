@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gửi Chị Ngân 💖</title>
+<style>
+body{
+    margin:0;
+    padding:0;
+    overflow:hidden;
+    font-family:Arial, sans-serif;
+    background:linear-gradient(to bottom,#ffd6e7,#fff);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+.box{
+    width:85%;
+    max-width:600px;
+    background:white;
+    padding:30px;
+    border-radius:25px;
+    box-shadow:0 0 25px rgba(0,0,0,0.2);
+    text-align:center;
+    animation:fadeIn 2s;
+    z-index:10;
+}
+h1{
+    color:#ff4f81;
+    margin-bottom:20px;
+}
+#text{
+    font-size:20px;
+    color:#444;
+    line-height:1.8;
+    white-space:pre-line;
+}
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(40px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+.heart{
+    position:absolute;
+    top:-10px;
+    color:pink;
+    animation:fall linear infinite;
+}
+@keyframes fall{
+    to{
+        transform:translateY(110vh);
+    }
+}
+.musicBtn{
+    margin-top:20px;
+    padding:12px 25px;
+    border:none;
+    border-radius:30px;
+    background:#ff4f81;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+}
+</style>
+</head>
+<body>
+<div class="box">
+    <h1>Chúc Mừng Tốt Nghiệp 🎓</h1>
+    <div id="text"></div>
+    <button class="musicBtn" onclick="playMusic()">
+        Bấm để mở nhạc 🎵
+    </button>
+</div>
+<audio id="music" loop>
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
+<script>
+const message = `Chị Ngânnnn!!
+Nay chị tốt nghiệp lớp 12 rồi, em buồn lắm luôn, vì sau này chắc sẽ không được gặp chị thường xuyên nữa. Nhưng em cũng rất tự hào về chị 💖.
+Có những lúc em vô tư quá nên làm chị buồn, em xin lỗi chị nhiều nhaaa.
+Dù vậy chị vẫn luôn tốt với em (lúc có lúc hong 😭).
+Mong rằng sau này chị sẽ luôn vui vẻ, sống thật hạnh phúc, đạt được những điều chị mong muốn và đừng quên em nhé.
+Chúc mừng chị tốt nghiệp 🎓✨`;
+let i = 0;
+function typing(){
+    if(i < message.length){
+        document.getElementById("text").innerHTML += message.charAt(i);
+        i++;
+        setTimeout(typing,40);
+    }
+}
+typing();
+function createHeart(){
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "💖";
+    heart.style.left = Math.random()*100 + "vw";
+    heart.style.fontSize = Math.random()*20 + 15 + "px";
+    heart.style.animationDuration = Math.random()*3 + 2 + "s";
+    document.body.appendChild(heart);
+    setTimeout(()=>{
+        heart.remove();
+    },5000);
+}
+setInterval(createHeart,300);
+function playMusic(){
+    document.getElementById("music").play();
+}
+</script>
+</body>
+</html>
